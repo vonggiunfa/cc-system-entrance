@@ -11,6 +11,7 @@ const nextConfig = {
   },
   basePath: '/cc-se',
   assetPrefix: '/cc-se',
+  devIndicators: false,
 }
 
 export default nextConfig
