@@ -10,6 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
   basePath: '/cc-se',
+  assetPrefix: '/cc-se',
 }
 
 export default nextConfig
