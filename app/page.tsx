@@ -7,84 +7,91 @@ import type React from "react"
 export default function Dashboard() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
-      {/* Sidebar - Fixed position on desktop, horizontal bar on mobile */}
-      <aside className="w-full md:w-1/4 bg-black text-white md:fixed md:h-screen z-10 h-auto">
+      {/* Sidebar - Smaller width on desktop for more content space */}
+      <aside className="w-full md:w-1/5 bg-black text-white md:fixed md:h-screen z-10 h-auto">
         <div className="flex flex-row md:flex-col items-center justify-center p-4 md:p-6 md:h-full">
-          <div className="flex-1 flex justify-center items-center md:mb-12 md:w-full max-w-[180px] md:max-w-full">
-            <Image src="/cc-se/logo-top.jpeg" alt="TOP Logo" width={500} height={500} className="w-full h-auto" />
+          <div className="flex-1 flex justify-center items-center md:mb-6 md:w-full max-w-[160px] md:max-w-full">
+            <Image src="/cc-se/logo-top.jpeg" alt="TOP Logo" width={400} height={400} className="w-full h-auto" />
           </div>
-          <div className="flex-1 flex justify-center items-center md:w-full max-w-[180px] md:max-w-full">
+          <div className="flex-1 flex justify-center items-center md:w-full max-w-[160px] md:max-w-full">
             <Image
               src="/cc-se/logo-chester.jpeg"
               alt="Chester Charles Logo"
-              width={500}
-              height={500}
+              width={400} 
+              height={400}
               className="w-full h-auto"
             />
           </div>
         </div>
       </aside>
 
-      {/* Main Content - With padding to account for fixed sidebar on desktop, 
-          and positioned below the header on mobile */}
-      <main className="flex-1 p-6 bg-gray-50 md:ml-[25%] mt-4 md:mt-0">
-        <div className="grid gap-6 max-w-6xl mx-auto">
-          {/* HR Section */}
-          <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow">
-            <h2 className="text-xl font-bold p-4 border-b border-gray-100 bg-gray-50/50">人事協同</h2>
-            <div className="p-5">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                <ModuleCard title="OA" description="業務流程管理，辦公協同" bgColor="bg-[#361176]" url="https://oa.top-2.com:1443/" />
-                {/* <ModuleCard title="CC-OA" description="業務流程管理，辦公協同" bgColor="bg-black" url="/cc-oa" />
-                <ModuleCard title="TOP2-OA" description="業務流程管理，辦公協同" bgColor="bg-purple-900" url="/top2-oa" />
-                <ModuleCard title="CC-EHR" description="人力資源管理系統" bgColor="bg-black" url="/cc-ehr" />
-                <ModuleCard title="TOP2-EHR" description="人力資源管理系統、企業員工管理平台" bgColor="bg-purple-900" url="/top2-ehr" /> */}
-                <ComingSoonCard description="敬請期待" />
-                {/* <AddModuleCard /> */}
+      {/* Main Content - More space with smaller sidebar */}
+      <main className="flex-1 p-4 bg-gray-50 md:ml-[20%] mt-4 md:mt-0 flex items-center justify-center min-h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full max-w-7xl mx-auto">
+          {/* 人事協同 Section */}
+          <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow h-full flex flex-col">
+            <h2 className="text-lg font-bold p-3 border-b border-gray-100 bg-gray-50/50">人事協同</h2>
+            <div className="p-4 flex-1 flex justify-center">
+              <div className="grid grid-cols-2 gap-4 w-full justify-items-center">
+                <div className="w-full max-w-[150px]">
+                  <ModuleCard title="OA" description="業務流程管理，辦公協同" bgColor="bg-[#361176]" url="https://oa.top-2.com:1443/" />
+                </div>
+                <div className="w-full max-w-[150px]">
+                  <ComingSoonCard description="敬請期待" />
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Store Sales Section */}
-          <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow">
-            <h2 className="text-xl font-bold p-4 border-b border-gray-100 bg-gray-50/50">店鋪銷售</h2>
-            <div className="p-5">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-                <ModuleCard title="Top2官網" description="Top2" bgColor="bg-black" url="https://www.top-2.com/" />
-                {/* <ModuleCard title="CRM" description="客戶關係管理系統" bgColor="bg-black" url="/crm" />
-                <ModuleCard title="小程序" description="小程序商城" bgColor="bg-black" url="/mini-program" /> */}
-                <ComingSoonCard description="敬請期待" />
-                {/* <AddModuleCard /> */}
+          {/* 店鋪銷售 Section */}
+          <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow h-full flex flex-col">
+            <h2 className="text-lg font-bold p-3 border-b border-gray-100 bg-gray-50/50">店鋪銷售</h2>
+            <div className="p-4 flex-1 flex justify-center">
+              <div className="grid grid-cols-2 gap-4 w-full justify-items-center">
+                <div className="w-full max-w-[150px]">
+                  <ModuleCard title="Top2官網" description="Top2" bgColor="bg-black" url="https://www.top-2.com/" />
+                </div>
+                <div className="w-full max-w-[150px]">
+                  <ComingSoonCard description="敬請期待" />
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Bottom Sections */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Procurement Section */}
-            <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow">
-              <h2 className="text-xl font-bold p-4 border-b border-gray-100 bg-gray-50/50">採購倉儲</h2>
-              <div className="p-5">
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+          {/* 採購倉儲 Section */}
+          <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow h-full flex flex-col">
+            <h2 className="text-lg font-bold p-3 border-b border-gray-100 bg-gray-50/50">採購倉儲</h2>
+            <div className="p-4 flex-1 flex justify-center">
+              <div className="grid grid-cols-2 gap-4 w-full justify-items-center">
+                <div className="w-full max-w-[150px]">
                   <ModuleCard title="SCM" description="供應鏈系統" bgColor="bg-black" url="http://120.55.44.246:18001/Login" />
-                  {/* <ModuleCard title="WMS" description="倉庫管理WMS" bgColor="bg-black" url="/wms" /> */}
+                </div>
+                <div className="w-full max-w-[150px]">
                   <ComingSoonCard description="敬請期待" />
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            {/* Data Platform Section */}
-            <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow">
-              <h2 className="text-xl font-bold p-4 border-b border-gray-100 bg-gray-50/50">數據中台</h2>
-              <div className="p-5">
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+          {/* 數據中台 Section */}
+          <section className="bg-white rounded-lg overflow-hidden shadow-sm border border-gray-100 hover:shadow transition-shadow h-full flex flex-col">
+            <h2 className="text-lg font-bold p-3 border-b border-gray-100 bg-gray-50/50">數據中台</h2>
+            <div className="p-4 flex-1 flex justify-center">
+              <div className="grid grid-cols-2 gap-4 w-full justify-items-center">
+                <div className="w-full max-w-[150px]">
                   <ModuleCard title="中台" description="訂單、庫存、商品" bgColor="bg-black" url="https://oms.top-2.com/" />
-                  <ModuleCard title="BI" description="商業智能數據報表" bgColor="bg-black" url="https://bi.top-2.com/webroot/decision/login?origin=cd97e378-7adb-4570-8b92-814d622ea095#/" />
-                  <ComingSoonCard description="敬請期待" />
+                </div>
+                <div className="w-full max-w-[150px]">
+                  <ModuleCard 
+                    title="BI" 
+                    description="商業智能數據報表" 
+                    bgColor="bg-black" 
+                    url="https://bi.top-2.com/webroot/decision/login?origin=cd97e378-7adb-4570-8b92-814d622ea095#/" 
+                  />
                 </div>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
         </div>
       </main>
     </div>
@@ -140,16 +147,3 @@ function ComingSoonCard({ description }: { description: string }) {
     </Card>
   )
 }
-
-// function AddModuleCard() {
-//   return (
-//     <Card className="flex flex-col items-center transition-all hover:shadow-md hover:translate-y-[-2px] cursor-pointer border border-dashed border-gray-300 overflow-hidden group bg-white/50">
-//       <div className="w-full aspect-square flex items-center justify-center bg-gray-50 group-hover:bg-gray-100 transition-colors">
-//         <Plus className="w-10 h-10 text-gray-400 group-hover:text-gray-600 transition-colors" />
-//       </div>
-//       <div className="p-3 text-center w-full border-t">
-//         <p className="text-sm text-gray-500 truncate">添加模塊</p>
-//       </div>
-//     </Card>
-//   )
-// }
