@@ -50,10 +50,10 @@ export default function Dashboard() {
                 <ModuleCard title="官網" description="Top2官網" bgColor="bg-black" url="https://www.top-2.com/" />
               </CardWrapper>
               <CardWrapper>
-                <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
+                <ModuleCard title="CRM" description="客戶關係管理系統" bgColor="bg-black" url="https://crm-tp.ezrpro.com/#/Vip/Info/Brand" />
               </CardWrapper>
               <CardWrapper>
-                <ModuleCard title="" description="" bgColor="" type="placeholder" />
+                <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
               </CardWrapper>
               <CardWrapper>
                 <ModuleCard title="" description="" bgColor="" type="placeholder" />
@@ -68,10 +68,10 @@ export default function Dashboard() {
                 <ModuleCard title="SCM" description="供應鏈系統" bgColor="bg-black" url="http://120.55.44.246:18001/Login" />
               </CardWrapper>
               <CardWrapper>
-                <ModuleCard title="EZRpro" description="粉絲互動營銷平台" bgColor="bg-black" url="https://crm-tp.ezrpro.com/#/Vip/Info/Brand" />
+              <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
               </CardWrapper>
               <CardWrapper>
-              <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
+                <ModuleCard title="" description="" bgColor="" type="placeholder" />
               </CardWrapper>
             </CardsGrid>
           </SectionCard>
