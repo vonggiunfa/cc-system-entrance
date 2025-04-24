@@ -8,7 +8,7 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50">
       {/* Sidebar - Smaller width on desktop for more content space */}
-      <aside className="w-full md:w-1/5 bg-black text-white md:fixed md:h-screen z-10 h-auto">
+      <aside className="w-full md:w-[30%] bg-black text-white md:fixed md:h-screen z-10 h-auto">
         <div className="flex flex-row md:flex-col items-center justify-center p-4 md:p-6 md:h-full">
           <div className="flex-1 flex justify-center items-center md:mb-6 md:w-full max-w-[160px] md:max-w-full">
             <Image src="/cc-se/logo-top.jpeg" alt="TOP Logo" width={400} height={400} className="w-full h-auto" />
@@ -26,16 +26,19 @@ export default function Dashboard() {
       </aside>
 
       {/* Main Content - More space with smaller sidebar */}
-      <main className="flex-1 p-4 bg-gray-50 md:ml-[20%] mt-4 md:mt-0 flex items-center justify-center min-h-screen">
+      <main className="flex-1 p-4 bg-gray-50 md:ml-[30%] mt-4 md:mt-0 flex items-center justify-center min-h-screen">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full max-w-7xl mx-auto">
           {/* 人事協同 Section */}
           <SectionCard title="人事協同">
             <CardsGrid>
               <CardWrapper>
-                <ModuleCard title="OA" description="業務流程管理，辦公協同" bgColor="bg-[#361176]" url="https://oa.top-2.com:1443/" />
+                <ModuleCard title="OA" description="業務流程管理，辦公協同" bgColor="bg-black" url="https://oa.top-2.com:1443/" />
               </CardWrapper>
               <CardWrapper>
-                <ComingSoonCard description="敬請期待" />
+                <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
+              </CardWrapper>
+              <CardWrapper>
+                <ModuleCard title="" description="" bgColor="" type="placeholder" />
               </CardWrapper>
             </CardsGrid>
           </SectionCard>
@@ -44,10 +47,16 @@ export default function Dashboard() {
           <SectionCard title="店鋪銷售">
             <CardsGrid>
               <CardWrapper>
-                <ModuleCard title="Top2官網" description="Top2" bgColor="bg-black" url="https://www.top-2.com/" />
+                <ModuleCard title="官網" description="Top2官網" bgColor="bg-black" url="https://www.top-2.com/" />
               </CardWrapper>
               <CardWrapper>
-                <ComingSoonCard description="敬請期待" />
+                <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
+              </CardWrapper>
+              <CardWrapper>
+                <ModuleCard title="" description="" bgColor="" type="placeholder" />
+              </CardWrapper>
+              <CardWrapper>
+                <ModuleCard title="" description="" bgColor="" type="placeholder" />
               </CardWrapper>
             </CardsGrid>
           </SectionCard>
@@ -59,7 +68,10 @@ export default function Dashboard() {
                 <ModuleCard title="SCM" description="供應鏈系統" bgColor="bg-black" url="http://120.55.44.246:18001/Login" />
               </CardWrapper>
               <CardWrapper>
-                <ComingSoonCard description="敬請期待" />
+                <ModuleCard title="EZRpro" description="粉絲互動營銷平台" bgColor="bg-black" url="https://crm-tp.ezrpro.com/#/Vip/Info/Brand" />
+              </CardWrapper>
+              <CardWrapper>
+              <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
               </CardWrapper>
             </CardsGrid>
           </SectionCard>
@@ -77,6 +89,9 @@ export default function Dashboard() {
                   bgColor="bg-black" 
                   url="https://bi.top-2.com/webroot/decision/login?origin=cd97e378-7adb-4570-8b92-814d622ea095#/" 
                 />
+              </CardWrapper>
+              <CardWrapper>
+                <ModuleCard title="" description="" bgColor="bg-black" type="coming-soon" />
               </CardWrapper>
             </CardsGrid>
           </SectionCard>
@@ -123,7 +138,7 @@ interface CardWrapperProps {
 
 function CardWrapper({ children }: CardWrapperProps) {
   return (
-    <div className="w-full max-w-[176px]">
+    <div className="flex w-full max-w-[126px]">
       {children}
     </div>
   )
@@ -135,15 +150,34 @@ interface ModuleCardProps {
   bgColor: string
   icon?: React.ReactNode
   url?: string
+  type?: "normal" | "coming-soon" | "placeholder"
 }
 
-function ModuleCard({ title, description, bgColor, icon, url }: ModuleCardProps) {
+function ModuleCard({ title, description, bgColor, icon, url, type = "normal" }: ModuleCardProps) {
+  // 占位类型不显示任何内容
+  if (type === "placeholder") {
+    return (
+      <div className="block w-full">
+        <div className="aspect-square w-full invisible"></div>
+        <div className="py-3 w-full">
+          <p className="text-sm font-medium invisible h-5"></p>
+        </div>
+      </div>
+    );
+  }
+
+  const displayContent = type === "coming-soon" 
+    ? <MoreHorizontal className="w-8 h-8" />
+    : (icon || title);
+  
+  const displayDescription = type === "coming-soon" ? "敬請期待" : description;
+  
   const cardContent = (
     <>
       <div
         className={`${bgColor} text-white w-full aspect-square flex items-center justify-center text-xl font-bold relative`}
       >
-        {icon || title}
+        {displayContent}
         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
       </div>
     </>
@@ -154,25 +188,9 @@ function ModuleCard({ title, description, bgColor, icon, url }: ModuleCardProps)
       <Card className="flex flex-col items-center transition-all hover:shadow-md hover:translate-y-[-2px] cursor-pointer overflow-hidden group">
         {cardContent}
       </Card>
-      <div className="p-3 text-center w-full border-t">
-        <p className="text-sm font-medium truncate">{description}</p>
+      <div className="py-3 text-center w-full">
+        <p className="text-sm font-medium line-clamp-2">{displayDescription}</p>
       </div>
     </Link>
-  )
-}
-
-// 新增敬請期待卡片组件，使用浅灰色系列
-function ComingSoonCard({ description }: { description: string }) {
-  return (
-    <>
-      <Card className="flex flex-col items-center overflow-hidden">
-        <div className="bg-gray-200 text-gray-500 w-full aspect-square flex items-center justify-center text-xl font-bold relative">
-          <MoreHorizontal className="w-8 h-8" />
-        </div>
-      </Card>
-      <div className="p-3 text-center w-full border-t">
-        <p className="text-sm font-medium text-gray-500 truncate">{description}</p>
-      </div>
-    </>
   )
 }
